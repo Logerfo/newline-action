@@ -1,0 +1,19 @@
+name: newline-action
+description: Automatically fixes files without a new line at the end in pull requests.
+author: Bruno Logerfo
+
+branding:
+  icon: file
+  color: white
+
+inputs:
+  github-token:
+    description: The `GITHUB_TOKEN` secret.
+    required: true
+  config-path:
+    description: The optional configuration file path.
+    default: .github/newline.yml
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

@@ -1,0 +1,37 @@
+{
+  "name": "newline-action",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A GitHub Action that automatically fixes files without a new line at the end in pull requests.",
+  "keywords": [
+    "actions",
+    "newline"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logerfo/newline-action.git"
+  },
+  "author": {
+    "email": "bruno@logerfo.tk",
+    "name": "Bruno Logerfo",
+    "url": "https://github.com/Logerfo"
+  },
+  "homepage": "https://github.com/newline-action",
+  "bugs": "https://github.com/newline-action/issues",
+  "license": "MIT",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "ncc build src/main.js",
+    "lint": "eslint src/main.js"
+  },
+  "dependencies": {
+    "@actions/core": "1.2.0",
+    "@actions/github": "1.1.0",
+    "js-yaml": "3.13.1",
+    "istextorbinary": "2.5.1"
+  },
+  "devDependencies": {
+    "eslint": "6.5.1",
+    "@zeit/ncc": "0.20.5"
+  }
+}
