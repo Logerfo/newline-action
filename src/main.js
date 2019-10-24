@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const path = require("path");
 const fs = require("fs").promises;
 const yaml = require("js-yaml");
