@@ -179,6 +179,7 @@ async function createCommit(results) {
     });
     core.debug(tree.data);
     const commit = await client.git.createCommit({
+        author: committer,
         message: "Fixed final line endings with Logerfo/newline-action.",
         owner,
         repo,
