@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const path = require("path");
 const fs = require("fs").promises;
 const yaml = require("js-yaml");
@@ -179,6 +177,7 @@ async function createCommit(results) {
     });
     core.debug(tree.data);
     const commit = await client.git.createCommit({
+        author: committer,
         message: "Fixed final line endings with Logerfo/newline-action.",
         owner,
         repo,
