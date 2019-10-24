@@ -1,4 +1,4 @@
-#!/usr/bin/env nodemodule.exports =
+module.exports =
 /******/ (function(modules, runtime) { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The module cache
@@ -475,8 +475,6 @@ module.exports = new Schema({
 /***/ 31:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-
-
 const path = __webpack_require__(622);
 const fs = __webpack_require__(747).promises;
 const yaml = __webpack_require__(414);
@@ -656,6 +654,7 @@ async function createCommit(results) {
     });
     core.debug(tree.data);
     const commit = await client.git.createCommit({
+        author: committer,
         message: "Fixed final line endings with Logerfo/newline-action.",
         owner,
         repo,
