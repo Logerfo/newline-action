@@ -21,7 +21,6 @@
   "license": "MIT",
   "main": "src/main.js",
   "scripts": {
-    "build": "ncc build src/main.js",
     "lint": "eslint src/main.js"
   },
   "dependencies": {
@@ -31,7 +30,6 @@
     "istextorbinary": "2.5.1"
   },
   "devDependencies": {
-    "eslint": "6.5.1",
-    "@zeit/ncc": "0.20.5"
+    "eslint": "6.5.1"
   }
 }
