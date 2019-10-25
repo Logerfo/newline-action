@@ -109,7 +109,7 @@ async function processFiles(config) {
             repo,
         });
         core.debug(JSON.stringify(changedFiles.data));
-        changedFiles.data.forEach(async function (element) {
+        for (const element of changedFiles.data) {
             if (!paths.includes(`${REPO_DIRECTORY}/${element.filename}`)) {
                 core.info(`${element.filename} is ignored. Skipping...`);
                 return;
@@ -127,7 +127,7 @@ async function processFiles(config) {
             const newFile = file.concat(getLineBreakChar(file));
             await fs.writeFile(element.filename, newFile);
             files.push(element.filename);
-        });
+        }
     } while (changedFiles.data.length == 100);
     return files;
 }
