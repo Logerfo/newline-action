@@ -1,5 +1,5 @@
 name: newline-action
-description: Automatically fixes files without a new line at the end in pull requests.
+description: Automatically fixes files without a final new line in pull requests.
 author: Bruno Logerfo
 
 branding:

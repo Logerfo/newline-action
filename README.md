@@ -1,7 +1,7 @@
 [![Dependencies Status](https://david-dm.org/logerfo/newline-action/dev-status.svg)](https://david-dm.org/logerfo/newline-action?type=dev)
 
 # Newline Action
-This action will automatically fix files without a new line at the end in pull requests.  
+This action will automatically fix files without a final new line in pull requests.  
 Only works for UTF-8 files.
 
 ## Setting up
@@ -9,7 +9,7 @@ Create a file named `.github/workflows/newline.yml`.
 
 ### Minimal configuration
 ```yml
-name: New line at the end of files
+name: Final new line
 on:
   pull_request:
     types: [synchronize, opened]
@@ -27,7 +27,7 @@ jobs:
 ### Complete configuration
 All values are default.
 ```yml
-name: New line at the end of files
+name: Final new line
 on:
   pull_request:
     types: [synchronize, opened]
