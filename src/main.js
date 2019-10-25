@@ -113,16 +113,16 @@ async function processFiles(config) {
         for (const element of changedFiles.data) {
             if (!paths.includes(`${REPO_DIRECTORY}/${element.filename}`)) {
                 core.info(`${element.filename} is ignored. Skipping...`);
-                return;
+                continue;
             }
             if (!isText(element.filename)) {
                 core.info(`${element.filename} is not a text file. Skipping...`);
-                return;
+                continue;
             }
             const file = await fs.readFile(element.filename, { encoding: "utf8" });
             if (file.endsWith("\n") || file.endsWith("\r")) {
                 core.info(`${element.filename} is not compromised. Skipping...`);
-                return;
+                continue;
             }
             core.info(`${element.filename} is compromised. Fixing...`);
             const newFile = file.concat(getLineBreakChar(file));
