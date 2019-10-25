@@ -165,8 +165,9 @@ async function convertToTreeBlobs(results) {
 }
 
 async function createCommit(results) {
+    const sha = context.payload.pull_request.head.sha;
     const latestCommit = await client.git.getCommit({
-        commit_sha: context.sha,
+        commit_sha: sha,
         owner,
         repo,
     });
@@ -184,7 +185,7 @@ async function createCommit(results) {
         owner,
         repo,
         tree: tree.data.sha,
-        parents: [context.sha],
+        parents: [sha],
     });
     core.debug(JSON.stringify(commit.data));
     const event = await getEvent()
