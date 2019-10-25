@@ -134,11 +134,13 @@ async function processFiles(config) {
 }
 
 function generateMarkdownReport(results, autoCommit) {
-    return `
+    const ret = `
 ${results.length} file(s) ${autoCommit ? "had their final line ending fixed" : "are missing a line break at their end"}:
-${results.forEach(function (element) {
+${results.map(function (element) {
         return `- \`${element}\`\n`;
     })}`;
+    core.debug(ret);
+    return ret;
 }
 
 async function convertToTreeBlobs(results) {
@@ -163,8 +165,9 @@ async function convertToTreeBlobs(results) {
 }
 
 async function createCommit(results) {
+    const sha = context.payload.pull_request.head.sha;
     const latestCommit = await client.git.getCommit({
-        commit_sha: context.sha,
+        commit_sha: sha,
         owner,
         repo,
     });
@@ -182,7 +185,7 @@ async function createCommit(results) {
         owner,
         repo,
         tree: tree.data.sha,
-        parents: [context.sha],
+        parents: [sha],
     });
     core.debug(JSON.stringify(commit.data));
     const event = await getEvent()
