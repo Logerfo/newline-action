@@ -135,7 +135,7 @@ async function processFiles(config) {
 function generateMarkdownReport(results, autoCommit) {
     return `
 ${results.length} file(s) ${autoCommit ? "had their final line ending fixed" : "are missing a line break at their end"}:
-${results.foreach(function (element) {
+${results.forEach(function (element) {
         return `- \`${element}\`\n`;
     })}`;
 }
