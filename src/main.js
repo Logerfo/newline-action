@@ -94,7 +94,7 @@ function getLineBreakChar(string) {
 async function processFiles(config) {
     const paths = await glob(`${REPO_DIRECTORY}/**`, {
         ignore: config.ignorePaths.map(p => path.resolve(REPO_DIRECTORY, p)),
-        nodir: true
+        nodir: true,
     }),
         files = [];
     let page = 0,
@@ -109,7 +109,7 @@ async function processFiles(config) {
             repo,
         });
         core.debug(JSON.stringify(changedFiles.data));
-        changedFiles.data.forEach(async function (element) {
+        for (const element of changedFiles.data) {
             if (!paths.includes(`${REPO_DIRECTORY}/${element.filename}`)) {
                 core.info(`${element.filename} is ignored. Skipping...`);
                 return;
@@ -127,12 +127,12 @@ async function processFiles(config) {
             const newFile = file.concat(getLineBreakChar(file));
             await fs.writeFile(element.filename, newFile);
             files.push(element.filename);
-        });
+        }
     } while (changedFiles.data.length == 100);
     return files;
 }
 
-async function generateMarkdownReport(results, autoCommit) {
+function generateMarkdownReport(results, autoCommit) {
     return `
 ${results.length} file(s) ${autoCommit ? "had their final line ending fixed" : "are missing a line break at their end"}:
 ${results.foreach(function (element) {
@@ -182,7 +182,7 @@ async function createCommit(results) {
         owner,
         repo,
         tree: tree.data.sha,
-        parents: [context.sha]
+        parents: [context.sha],
     });
     core.debug(JSON.stringify(commit.data));
     const update = await client.git.updateRef({
@@ -215,7 +215,7 @@ async function push() {
     }
 
     core.info("Generating markdown report...");
-    const markdown = await generateMarkdownReport(results, config.autoCommit);
+    const markdown = generateMarkdownReport(results, config.autoCommit);
 
     if (config.autoCommit) {
         core.info("Committing files...");
