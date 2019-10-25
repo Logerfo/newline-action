@@ -94,7 +94,7 @@ function getLineBreakChar(string) {
 async function processFiles(config) {
     const paths = await glob(`${REPO_DIRECTORY}/**`, {
         ignore: config.ignorePaths.map(p => path.resolve(REPO_DIRECTORY, p)),
-        nodir: true
+        nodir: true,
     }),
         files = [];
     let page = 0,
@@ -182,7 +182,7 @@ async function createCommit(results) {
         owner,
         repo,
         tree: tree.data.sha,
-        parents: [context.sha]
+        parents: [context.sha],
     });
     core.debug(JSON.stringify(commit.data));
     const update = await client.git.updateRef({
