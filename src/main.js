@@ -45,7 +45,7 @@ async function getConfig() {
         config = ymlConfig ? Object.assign(defaultConfig, ymlConfig) : defaultConfig;
 
     core.info(ymlConfig ? "Config file loaded." : "Config file not found. Using default...");
-    core.debug(config);
+    core.debug(JSON.stringify(config));
     return config;
 }
 
