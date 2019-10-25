@@ -163,7 +163,6 @@ async function convertToTreeBlobs(results) {
 }
 
 async function createCommit(results) {
-    const head = context.ref.substr(11);
     const latestCommit = await client.git.getCommit({
         commit_sha: context.sha,
         owner,
@@ -186,10 +185,11 @@ async function createCommit(results) {
         parents: [context.sha],
     });
     core.debug(JSON.stringify(commit.data));
+    const event = await getEvent()
     const update = await client.git.updateRef({
         owner,
         repo,
-        ref: `heads/${head}`,
+        ref: `heads/${event.pull_request.head.ref}`,
         sha: commit.data.sha,
     });
     core.debug(JSON.stringify(update.data));
