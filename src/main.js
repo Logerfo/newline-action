@@ -45,7 +45,7 @@ async function getConfig() {
         config = ymlConfig ? Object.assign(defaultConfig, ymlConfig) : defaultConfig;
 
     core.info(ymlConfig ? "Config file loaded." : "Config file not found. Using default...");
-    core.debug(config);
+    core.debug(JSON.stringify(config));
     return config;
 }
 
@@ -110,7 +110,7 @@ async function processFiles(config) {
         });
         core.debug(JSON.stringify(changedFiles.data));
         changedFiles.data.forEach(async function (element) {
-            if (!paths.includes(element.filename)) {
+            if (!paths.includes(`${REPO_DIRECTORY}/${element.filename}`)) {
                 core.info(`${element.filename} is ignored. Skipping...`);
                 return;
             }
