@@ -108,7 +108,7 @@ async function processFiles(config) {
             pull_number: context.payload.pull_request.number,
             repo,
         });
-        core.debug(changedFiles.data);
+        core.debug(JSON.stringify(changedFiles.data));
         changedFiles.data.forEach(async function (element) {
             if (!paths.includes(element.filename)) {
                 core.info(`${element.filename} is ignored. Skipping...`);
@@ -150,7 +150,7 @@ async function convertToTreeBlobs(results) {
             owner,
             repo,
         });
-        core.debug(blob.data);
+        core.debug(JSON.stringify(blob.data));
         blobs.push({
             path: path.replace(REPO_DIRECTORY, "").replace(/\//, ""),
             mode: "100644",
@@ -168,14 +168,14 @@ async function createCommit(results) {
         owner,
         repo,
     });
-    core.debug(latestCommit.data);
+    core.debug(JSON.stringify(latestCommit.data));
     const tree = await client.git.createTree({
         base_tree: latestCommit.data.tree.sha,
         owner,
         repo,
         tree: await convertToTreeBlobs(results),
     });
-    core.debug(tree.data);
+    core.debug(JSON.stringify(tree.data));
     const commit = await client.git.createCommit({
         author: committer,
         message: "Fixed final line endings with Logerfo/newline-action.",
@@ -184,14 +184,14 @@ async function createCommit(results) {
         tree: tree.data.sha,
         parents: [context.sha]
     });
-    core.debug(commit.data);
+    core.debug(JSON.stringify(commit.data));
     const update = await client.git.updateRef({
         owner,
         repo,
         ref: `heads/${head}`,
         sha: commit.data.sha,
     });
-    core.debug(update.data);
+    core.debug(JSON.stringify(update.data));
 }
 
 async function createComment(body) {
@@ -201,7 +201,7 @@ async function createComment(body) {
         owner,
         repo,
     });
-    core.debug(comment.data);
+    core.debug(JSON.stringify(comment.data));
 }
 
 async function push() {
