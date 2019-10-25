@@ -132,7 +132,7 @@ async function processFiles(config) {
     return files;
 }
 
-async function generateMarkdownReport(results, autoCommit) {
+function generateMarkdownReport(results, autoCommit) {
     return `
 ${results.length} file(s) ${autoCommit ? "had their final line ending fixed" : "are missing a line break at their end"}:
 ${results.foreach(function (element) {
@@ -215,7 +215,7 @@ async function push() {
     }
 
     core.info("Generating markdown report...");
-    const markdown = await generateMarkdownReport(results, config.autoCommit);
+    const markdown = generateMarkdownReport(results, config.autoCommit);
 
     if (config.autoCommit) {
         core.info("Committing files...");
