@@ -1,11 +1,11 @@
-const path = require("path");
-const fs = require("fs").promises;
-const yaml = require("js-yaml");
-const util = require("util");
-const glob = util.promisify(require("glob"));
-const { isText } = require('istextorbinary')
-const core = require("@actions/core");
-const github = require("@actions/github");
+const path = require("path"),
+    fs = require("fs").promises,
+    yaml = require("js-yaml"),
+    util = require("util"),
+    glob = util.promisify(require("glob")),
+    { isText } = require('istextorbinary'),
+    core = require("@actions/core"),
+    github = require("@actions/github");
 
 const REPO_DIRECTORY = process.env["GITHUB_WORKSPACE"],
     CONFIG_PATH = path.join(REPO_DIRECTORY, getInput("config-path", ".github/newline.yml")),
@@ -209,7 +209,7 @@ async function createComment(body) {
 }
 
 async function push() {
-    const config = await getConfig()
+    const config = await getConfig();
 
     core.info("Locating files...");
     const results = await processFiles(config);
