@@ -1,6 +1,6 @@
 {
   "name": "newline-action",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "A GitHub Action that automatically fixes files without a final new line in pull requests.",
   "keywords": [
