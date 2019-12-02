@@ -155,7 +155,7 @@ async function convertToTreeBlobs(results) {
         });
         core.debug(JSON.stringify(blob.data));
         blobs.push({
-            path: path.replace(REPO_DIRECTORY, "").replace(/\//, ""),
+            path: path.replace(REPO_DIRECTORY, ""),
             mode: "100644",
             sha: blob.data.sha,
             type: "blob",
