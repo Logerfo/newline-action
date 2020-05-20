@@ -27,7 +27,7 @@
     "@actions/core": "1.2.4",
     "@actions/github": "2.2.0",
     "js-yaml": "3.13.1",
-    "istextorbinary": "4.0.0"
+    "istextorbinary": "4.1.0"
   },
   "devDependencies": {
     "eslint": "7.0.0"
