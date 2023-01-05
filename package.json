@@ -1,7 +1,7 @@
 {
   "name": "newline-action",
-  "version": "0.0.2",
-  "private": true,
+  "version": "0.0.4",
+  "main": "dist/index.js",
   "description": "A GitHub Action that automatically fixes files without a final new line in pull requests.",
   "keywords": [
     "actions",
@@ -19,17 +19,18 @@
   "homepage": "https://github.com/newline-action",
   "bugs": "https://github.com/newline-action/issues",
   "license": "MIT",
-  "main": "src/main.js",
   "scripts": {
+    "prepare": "ncc build src/main.js -o dist --source-map --license licenses.txt",
     "lint": "eslint src/main.js"
   },
   "dependencies": {
-    "@actions/core": "1.2.0",
-    "@actions/github": "1.1.0",
-    "js-yaml": "3.13.1",
-    "istextorbinary": "3.2.0"
+    "@actions/core": "1.2.7",
+    "@actions/github": "^5.1.1",
+    "istextorbinary": "^6.0.0",
+    "js-yaml": "3.14.1"
   },
   "devDependencies": {
-    "eslint": "6.7.2"
+    "@vercel/ncc": "^0.36.0",
+    "eslint": "7.9.0"
   }
 }

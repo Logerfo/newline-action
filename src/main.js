@@ -13,10 +13,10 @@ const REPO_DIRECTORY = process.env["GITHUB_WORKSPACE"],
     context = github.context,
     owner = context.repo.owner,
     repo = context.repo.repo,
-    client = new github.GitHub(token),
+    client = new github.getOctokit(token).rest,
     committer = {
-        name: 'Bruno Logerfo',
-        email: 'bruno@logerfo.tk',
+        name: 'GitHub Actions Bot',
+        email: '41898282+github-actions[bot]@users.noreply.github.com',
     };
 
 const getEvent = async () => JSON.parse(await fs.readFile(process.env["GITHUB_EVENT_PATH"]));
@@ -181,7 +181,7 @@ async function createCommit(results) {
     core.debug(JSON.stringify(tree.data));
     const commit = await client.git.createCommit({
         author: committer,
-        message: "Fixed final line endings with Logerfo/newline-action.",
+        message: "Fix final line endings",
         owner,
         repo,
         tree: tree.data.sha,
