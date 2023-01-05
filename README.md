@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
-      - uses: Logerfo/newline-action@0.0.3
+      - uses: Logerfo/newline-action@0.0.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} # The `GITHUB_TOKEN` secret.
 ```
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
-      - uses: Logerfo/newline-action@0.0.3
+      - uses: Logerfo/newline-action@0.0.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} # The `GITHUB_TOKEN` secret.
           config-path: .github/newline.yml # The path of the addtional configurations file.
