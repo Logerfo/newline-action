@@ -15,5 +15,5 @@ inputs:
     default: .github/newline.yml
 
 runs:
-  using: 'node12'
-  main: 'src/main.js'
+  using: "node16"
+  main: "dist/index.js"
